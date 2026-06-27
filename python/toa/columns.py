@@ -2,6 +2,7 @@ class NamesCol:
     ID = "id"
     ARTIST = "artist"
     ALBUM = "album"
+    SHORT_NAME = "short-name"
 
 
 class ResultsCol:
