@@ -16,3 +16,6 @@ class ScoresCol:
     SCORE = "score"
     ROBUSTNESS = "robustness"
     DATE = "date"
+    RANK = "rank"
+    IS_NEW = "is_new"
+    SCORE_DELTA = "score_delta"
