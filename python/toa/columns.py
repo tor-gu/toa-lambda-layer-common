@@ -19,3 +19,12 @@ class ScoresCol:
     RANK = "rank"
     IS_NEW = "is_new"
     SCORE_DELTA = "score_delta"
+
+
+class StatisticsCol:
+    EARLIEST_MATCH = "earliest_match"
+    LATEST_MATCH = "latest_match"
+    MIN_SCORE = "min_score"
+    MAX_SCORE = "max_score"
+    NUM_ALBUMS = "num_albums"
+    NUM_MATCHES = "num_matches"

@@ -7,3 +7,5 @@ RESULTS_CONSOLIDATED_KEY = "results/consolidated/results.parquet"
 
 SCORES_KEY = "scores/scores.parquet"
 ENRICHED_SCORES_KEY = "scores/enriched_scores.parquet"
+
+GLOBAL_STATISTICS_KEY = "statistics/global_statistics.parquet"
