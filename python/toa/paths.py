@@ -9,3 +9,7 @@ SCORES_KEY = "scores/scores.parquet"
 ENRICHED_SCORES_KEY = "scores/enriched_scores.parquet"
 
 GLOBAL_STATISTICS_KEY = "statistics/global_statistics.parquet"
+
+VIZ_DATES_KEY = "viz/dates.parquet"
+VIZ_ALBUMS_KEY = "viz/albums.parquet"
+VIZ_MATCHES_KEY = "viz/matches.parquet"

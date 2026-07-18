@@ -21,6 +21,16 @@ class ScoresCol:
     SCORE_DELTA = "score_delta"
 
 
+class VizCol:
+    ID = "id"
+    DEBUT = "debut"
+    SCORES = "scores"
+    MATCH_IDS = "match_ids"
+    MATCH_ID = "match_id"
+    DATE = "date"
+    ORDER = "order"
+
+
 class StatisticsCol:
     EARLIEST_MATCH = "earliest_match"
     LATEST_MATCH = "latest_match"
