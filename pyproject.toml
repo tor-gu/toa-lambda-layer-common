@@ -1,0 +1,12 @@
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
+# `python/` is the layer root — zipped as-is, so its modules import as `toa.*`
+# both here and in every Lambda that attaches the layer.
+pythonpath = ["python"]

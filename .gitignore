@@ -1,4 +1,6 @@
 common.zip
+.venv/
 __pycache__/
 *.pyc
 *.pyo
+.pytest_cache/
