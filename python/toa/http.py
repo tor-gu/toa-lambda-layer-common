@@ -28,9 +28,3 @@ def json_response(status_code: int, body: dict) -> dict:
 def atom_response(status_code: int, body: str) -> dict:
     """API Gateway response for an already-rendered Atom document."""
     return _response(status_code, body, ATOM_CONTENT_TYPE)
-
-
-# Deprecated: use json_response(). Removed once the API Lambdas migrate.
-def response(status_code: int, body: dict) -> dict:
-    """Deprecated alias for json_response()."""
-    return json_response(status_code, body)

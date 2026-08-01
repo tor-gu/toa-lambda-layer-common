@@ -12,7 +12,7 @@ modules import as `toa.*`.
 | `toa.logging` | `get_logger(name=, domain=)` and the `Domain` enum |
 | `toa.columns` | column name constants: `NamesCol`, `ResultsCol`, `ScoresCol`, `VizCol`, `StatisticsCol` |
 | `toa.paths` | S3 keys and prefixes for every Parquet file |
-| `toa.http` | `json_response(status_code, body)` and `atom_response(status_code, body)` — the standard CORS headers plus the matching `Content-Type`. `response` is a deprecated alias for `json_response` |
+| `toa.http` | `json_response(status_code, body)` and `atom_response(status_code, body)` — the standard CORS headers plus the matching `Content-Type` |
 | `toa.dynamodb` | `query_all(table, **kwargs)` — runs a query to completion across pages |
 
 `atom_response` takes an already-rendered XML string and passes it through untouched;

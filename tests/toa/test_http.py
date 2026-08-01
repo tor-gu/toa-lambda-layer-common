@@ -9,7 +9,6 @@ from toa.http import (
     JSON_CONTENT_TYPE,
     atom_response,
     json_response,
-    response,
 )
 
 FEED_XML = (
@@ -112,17 +111,3 @@ def test_headers_are_not_shared_between_responses():
 def test_mutating_a_response_does_not_touch_the_cors_constant():
     atom_response(200, "")["headers"]["Access-Control-Allow-Methods"] = "DELETE"
     assert CORS_HEADERS["Access-Control-Allow-Methods"] == "GET,OPTIONS"
-
-
-# ── deprecated alias ─────────────────────────────────────────────────────────
-
-
-def test_response_matches_json_response():
-    # `response` stays behavior-identical until its call sites migrate.
-    assert response(200, make_body()) == json_response(200, make_body())
-
-
-def test_response_still_sets_json_content_type():
-    assert response(404, {"error": "not found"})["headers"]["Content-Type"] == (
-        JSON_CONTENT_TYPE
-    )
