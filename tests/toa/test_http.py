@@ -8,6 +8,7 @@ from toa.http import (
     CORS_HEADERS,
     JSON_CONTENT_TYPE,
     atom_response,
+    json_envelope,
     json_response,
 )
 
@@ -111,3 +112,29 @@ def test_headers_are_not_shared_between_responses():
 def test_mutating_a_response_does_not_touch_the_cors_constant():
     atom_response(200, "")["headers"]["Access-Control-Allow-Methods"] = "DELETE"
     assert CORS_HEADERS["Access-Control-Allow-Methods"] == "GET,OPTIONS"
+
+
+# ── json_envelope (direct SDK invoke, no browser) ────────────────────────────
+
+
+def test_json_envelope_carries_no_headers():
+    # Check no headers in the response
+    assert "headers" not in json_envelope(200, {"scores": []})
+
+
+def test_json_envelope_response_shape():
+    envelope = json_envelope(200, make_body())
+    assert set(envelope) == {"statusCode", "body"}
+    assert envelope["statusCode"] == 200
+    assert isinstance(envelope["body"], str)
+    assert json.loads(envelope["body"]) == make_body()
+
+
+@pytest.mark.parametrize("status_code", [200, 400, 404, 500])
+def test_json_envelope_echoes_status_code(status_code):
+    assert json_envelope(status_code, {})["statusCode"] == status_code
+
+
+def test_json_envelope_shares_the_json_response_serializer():
+    body = {"n": Decimal("0.5"), "d": date(2024, 3, 15)}
+    assert json_envelope(200, body)["body"] == json_response(200, body)["body"]
