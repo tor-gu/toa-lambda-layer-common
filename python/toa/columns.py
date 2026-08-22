@@ -19,6 +19,7 @@ class ScoresCol:
     RANK = "rank"
     IS_NEW = "is_new"
     SCORE_DELTA = "score_delta"
+    RANK_DELTA = "rank_delta"
 
 
 class VizCol:
