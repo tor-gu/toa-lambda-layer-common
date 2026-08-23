@@ -13,7 +13,7 @@ modules import as `toa.*`.
 | `toa.columns` | column name constants: `NamesCol`, `ResultsCol`, `ScoresCol`, `VizCol`, `StatisticsCol` |
 | `toa.paths` | S3 keys and prefixes for every Parquet file |
 | `toa.http` | `json_response(status_code, body)` and `atom_response(status_code, body)` — the standard CORS headers plus the matching `Content-Type` |
-| `toa.dynamodb` | `query_all(table, **kwargs)` — runs a query to completion across pages |
+| `toa.dynamodb` | `query_all(table, **kwargs)` — runs a query to completion across pages; `batch_get_all(dynamodb, table_name, keys)` — fetches items by list of primary keys |
 
 `atom_response` takes an already-rendered XML string and passes it through untouched;
 `json_response` serializes its dict body with `default=str`, so values that aren't natively
