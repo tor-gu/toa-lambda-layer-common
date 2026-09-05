@@ -1,4 +1,5 @@
 NAMES_UNPROCESSED_PREFIX = "names/unprocessed/"
+NAMES_PROCESSED_PREFIX = "names/processed/"
 NAMES_CONSOLIDATED_KEY = "names/consolidated/names.parquet"
 
 RESULTS_UNPROCESSED_PREFIX = "results/unprocessed/"
