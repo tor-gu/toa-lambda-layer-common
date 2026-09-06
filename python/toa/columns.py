@@ -11,6 +11,12 @@ class ResultsCol:
     ORDER = "order"
 
 
+class RedactionsCol:
+    ID = "id"
+    ARTIST = "artist"
+    ALBUM = "album"
+
+
 class ScoresCol:
     ID = "id"
     SCORE = "score"
