@@ -21,3 +21,7 @@ GLOBAL_STATISTICS_KEY = "statistics/global_statistics.parquet"
 VIZ_DATES_KEY = "viz/dates.parquet"
 VIZ_ALBUMS_KEY = "viz/albums.parquet"
 VIZ_MATCHES_KEY = "viz/matches.parquet"
+
+# Set by upstream processes to force a full dynamodb rewrite. (Currently
+# used only for redactions.)
+DYNAMODB_REWRITE_PENDING_KEY = "flags/dynamodb_rewrite_pending.json"

@@ -1,5 +1,5 @@
 import pytest
-from toa.dynamodb import batch_get_all
+from toa.dynamodb import batch_get_all, scan_all
 
 TABLE = "scores"
 
@@ -122,3 +122,41 @@ def test_partial_results_survive_the_retry():
     )
     items = batch_get_all(resource, TABLE, keys("a", "b", "c"))
     assert sorted(item["id"] for item in items) == ["a", "b", "c"]
+
+
+# ── scan_all ─────────────────────────────────────────────────────────────────
+
+
+class FakeTable:
+    """Stands in for a boto3 Table: hands back `pages` from scan() in order and
+    records the kwargs of every call."""
+
+    def __init__(self, pages):
+        self.pages = list(pages)
+        self.calls = []
+
+    def scan(self, **kwargs):
+        self.calls.append(dict(kwargs))
+        return self.pages.pop(0)
+
+
+def test_scan_all_single_page():
+    table = FakeTable([{"Items": [{"id": "a"}, {"id": "b"}]}])
+    assert scan_all(table, ProjectionExpression="id") == [{"id": "a"}, {"id": "b"}]
+    assert table.calls == [{"ProjectionExpression": "id"}]
+
+
+def test_scan_all_follows_last_evaluated_key():
+    table = FakeTable(
+        [
+            {"Items": [{"id": "a"}], "LastEvaluatedKey": {"id": "a"}},
+            {"Items": [{"id": "b"}], "LastEvaluatedKey": {"id": "b"}},
+            {"Items": []},
+        ]
+    )
+    assert scan_all(table) == [{"id": "a"}, {"id": "b"}]
+    assert [call.get("ExclusiveStartKey") for call in table.calls] == [
+        None,
+        {"id": "a"},
+        {"id": "b"},
+    ]

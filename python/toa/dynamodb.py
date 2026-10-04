@@ -18,6 +18,19 @@ def query_all(table, **kwargs):
     return items
 
 
+def scan_all(table, **kwargs):
+    """Every item `table.scan(**kwargs)` returns, across all pages. Pass a
+    ProjectionExpression to keep the pages small."""
+    items = []
+    while True:
+        resp = table.scan(**kwargs)
+        items.extend(resp["Items"])
+        if "LastEvaluatedKey" not in resp:
+            break
+        kwargs["ExclusiveStartKey"] = resp["LastEvaluatedKey"]
+    return items
+
+
 def batch_get_all(dynamodb, table_name, keys, max_attempts=3):
     """Every item in `keys`, fetched from `table_name` by full primary key.
 
